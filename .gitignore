@@ -20,3 +20,6 @@ ios/App/App.xcodeproj/xcuserdata/
 DerivedData/
 
 .DS_Store
+
+# Betriebsartefakte der Werkzeugkette
+.omc/
