@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OpenEOS Anzeige</string>
+    <string name="title_activity_main">OpenEOS Anzeige</string>
+    <string name="package_name">de.openeos.display</string>
+    <string name="custom_url_scheme">de.openeos.display</string>
+</resources>

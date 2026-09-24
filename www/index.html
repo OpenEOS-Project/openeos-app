@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<title>OpenEOS Anzeige</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="schirm" id="schirm">
+  <img class="logo" src="logo.png" alt="OpenEOS" />
+
+  <!-- Start: läuft, während geprüft wird, ob der Server erreichbar ist -->
+  <section class="block" id="block-start">
+    <div class="spinner" aria-hidden="true"></div>
+    <p class="lead">Verbinde …</p>
+  </section>
+
+  <!-- Kein Netz: der einzige Fall, den das Personal selbst beheben kann -->
+  <section class="block" id="block-offline" hidden>
+    <h1>Keine Verbindung</h1>
+    <p class="lead">
+      Dieses Gerät erreicht OpenEOS nicht. Prüfen Sie das WLAN am Standort
+      des Bildschirms.
+    </p>
+    <p class="detail" id="offline-ziel"></p>
+    <button class="knopf" id="erneut" autofocus>Erneut versuchen</button>
+    <p class="hinweis">Nächster Versuch automatisch in <span id="countdown">15</span> s</p>
+  </section>
+
+  <!-- Serverwahl: nur für uns, über einen langen Druck erreichbar -->
+  <section class="block" id="block-server" hidden>
+    <h1>Server</h1>
+    <div class="wahl">
+      <button class="knopf knopf--leise" data-host="app.openeos.de">Produktion</button>
+      <button class="knopf knopf--leise" data-host="app.staging.openeos.de">Staging</button>
+    </div>
+    <button class="knopf" id="server-zurueck">Zurück</button>
+  </section>
+</main>
+
+<button class="geheim" id="geheim" aria-label="Servereinstellungen"></button>
+
+<script src="app.js"></script>
+</body>
+</html>

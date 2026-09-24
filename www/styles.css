@@ -1,0 +1,126 @@
+/* Dunkel, ruhig, aus jeder Entfernung lesbar.
+   Ein Bildschirm hinter der Theke hängt oft hoch und weit weg, und im
+   Zelt ist es abends dunkel — helle Flaechen blenden dann. */
+:root {
+  --ink: #f5f2ea;
+  --mute: #9a9c94;
+  --grund: #14180f;
+  --gruen: #4ade80;
+  --linie: #2a2f26;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--grund);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Auf dem Fernseher gibt es nichts auszuwählen, und ein versehentlich
+     markierter Text bliebe stundenlang blau hinterlegt stehen. */
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+.schirm {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 28px;
+  padding: 7vh 8vw;
+  text-align: center;
+}
+
+.logo {
+  width: clamp(120px, 14vw, 190px);
+  height: auto;
+  opacity: .92;
+}
+
+.block {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  max-width: 30ch;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(26px, 3.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin: 0;
+  font-size: clamp(16px, 1.7vw, 21px);
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+.detail {
+  margin: 0;
+  font: 500 13px ui-monospace, monospace;
+  color: var(--linie);
+  color: #6b7068;
+}
+
+.hinweis {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7068;
+}
+
+.knopf {
+  appearance: none;
+  border: 1px solid var(--linie);
+  background: #1d2219;
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 14px 26px;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Fernbedienung statt Finger: Der Fokusrahmen muss aus drei Metern zu
+   erkennen sein, sonst weiss niemand, worauf OK gerade drückt. */
+.knopf:focus-visible,
+.knopf:focus {
+  outline: none;
+  border-color: var(--gruen);
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, .28);
+}
+
+.knopf--leise { background: transparent; }
+
+.wahl { display: grid; gap: 10px; }
+
+.spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid var(--linie);
+  border-top-color: var(--gruen);
+  border-radius: 50%;
+  animation: dreh 1s linear infinite;
+}
+
+@keyframes dreh { to { transform: rotate(360deg); } }
+
+/* Unsichtbare Ecke oben links: langer Druck oeffnet die Serverwahl.
+   Kein sichtbarer Knopf, weil das kein Kunde je braucht — aber wir im
+   Zweifel vor Ort. */
+.geheim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 84px;
+  height: 84px;
+  opacity: 0;
+  border: 0;
+  background: transparent;
+}
