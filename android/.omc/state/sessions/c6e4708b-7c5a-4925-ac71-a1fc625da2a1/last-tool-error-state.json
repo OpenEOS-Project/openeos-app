@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"export PATH=$PATH:~/Android/Sdk/platform-tools\\nadb emu kill 2>/dev/null; sleep 3\\npkill -f \\\"qemu-system-x86_64 -avd FireTV\\\" 2>/dev/null; sleep 2\\npgrep -af \\\"qemu-system.*FireTV\\\" >/dev...",
+  "error": "Exit code 144\nOK: killing emulator, bye bye\r\nOK",
+  "timestamp": "2026-09-24T20:30:07.782Z",
+  "retry_count": 1
+}

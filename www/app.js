@@ -12,7 +12,10 @@
  */
 
 const SPEICHER_HOST = 'openeos.host';
-const STANDARD_HOST = 'app.openeos.de';
+/* Debug-Builds zeigen auf Staging: Wer die App zum Pruefen installiert,
+   soll keine echten Geraete in der Produktion anlegen. Der Store-Build
+   (release) nimmt weiterhin die Produktion. */
+const STANDARD_HOST = window.OPENEOS_DEFAULT_HOST || 'app.openeos.de';
 const ZIEL_PFAD = '/de/device/pair?type=display';
 
 /** Wie lange bis zum nächsten Versuch, wenn kein Netz da ist. */
