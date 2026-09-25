@@ -16,8 +16,8 @@ einen Nachweis über die D-U-N-S-Nummer. Als Einzelperson entfällt das.
 
 ### Signierschlüssel — **ist bereits erzeugt**
 
-| | |
-|---|---|
+| Angabe | Wert |
+| --- | --- |
 | Datei | `~/.openeos-keys/openeos-release.p12` (nicht im Repo, `600`) |
 | Format | PKCS12, RSA 4096, SHA384withRSA |
 | Alias | `openeos` |
@@ -67,10 +67,16 @@ Play will das **AAB**, nicht die APK.
 
 ## 3. Angaben im Play-Formular
 
+> **Maßgeblich ist `store/PLAY-TEXTE.md`.** Dort stehen die Angaben mit
+> geprüften Zeichenzahlen und die Datensicherheitsantworten, die aus der
+> Sentry-Konfiguration abgeleitet sind. Was hier folgt, ist der ältere,
+> knappere Stand und weicht in den Details ab — im Zweifel gilt die andere
+> Datei.
+
 ### Grunddaten
 
 | Feld | Wert |
-|---|---|
+| --- | --- |
 | Paketname | `de.openeos.display` |
 | App-Name | OpenEOS Anzeige |
 | Kategorie | Unternehmen (Business) |
@@ -127,7 +133,7 @@ weiterkommen. Ins Feld „Anweisungen für die Überprüfung":
 Das Formular ist Pflicht und muss stimmen. Für diese App:
 
 | Frage | Antwort |
-|---|---|
+| --- | --- |
 | Werden Daten erhoben? | Ja |
 | Werden Daten geteilt? | Nein |
 | Übertragung verschlüsselt? | Ja (HTTPS) |
@@ -142,9 +148,10 @@ nötig, nicht optional, und dient nicht der Werbung.
 Alles Folgende liegt fertig unter `store/`:
 
 | Was | Größe | Datei |
-|---|---|---|
+| --- | --- | --- |
 | App-Symbol | 512×512 | `play-icon-512.png` |
 | Grafik für die Vorschau | 1024×500 | `play-feature-1024x500.png` |
+| TV-Banner | 1280×720 | `play-tv-banner-1280x720.png` |
 | Screenshots Fernseher | 1920×1080 | `screenshot-tv-*.png` |
 
 **Screenshots vom Telefon fehlen noch.** Play verlangt mindestens zwei,
@@ -155,7 +162,30 @@ laufende Anzeige aufnehmen.
 Für die TV-Version zusätzlich ein **Banner 320×180** — das liegt bereits
 im Projekt (`res/drawable-xhdpi/tv_banner.png`).
 
-## 5. Was erfahrungsgemäß hakt
+## 5. Produktion oder Staging umstellen
+
+Die Vorgabe ist **immer** `app.openeos.de`. Staging erreicht man ohne
+eigenen Build über die versteckte Serverwahl:
+
+- **Per Finger:** oben links in die Ecke (84×84 px, unsichtbar) und drei
+  Sekunden halten.
+- **Mit Fernbedienung:** auf dem Bildschirm „Keine Verbindung" die
+  Auswahltaste drei Sekunden halten. Kurz drücken heißt weiterhin „Erneut
+  versuchen".
+
+Die Wahl landet in `localStorage` unter `openeos.host` und überlebt den
+Neustart. Zurück auf Produktion geht denselben Weg.
+
+:::warning
+Die Serverwahl ist nur erreichbar, **solange der lokale Startbildschirm zu
+sehen ist** — also während der Verbindungsprüfung und auf dem
+Fehlerbildschirm. Sobald die App ihr Ziel erreicht, wechselt sie in die
+Weboberfläche, und der Weg dorthin ist zu. Wer auf dem falschen Server
+steckt, muss das WLAN trennen: dann erscheint „Keine Verbindung" und damit
+die Wahl.
+:::
+
+## 6. Was erfahrungsgemäß hakt
 
 **Fire TV ist nicht Google Play.** Amazon hat einen eigenen Store mit
 eigenem Konto (kostenlos) und eigener Prüfung. Dieselbe AAB/APK, zwei
