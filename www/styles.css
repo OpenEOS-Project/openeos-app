@@ -47,6 +47,15 @@ html, body {
   max-width: 30ch;
 }
 
+/* Ohne diese Zeile zeigt der Bildschirm alle drei Blöcke untereinander.
+   `display: grid` oben ist eine Autorenregel und schlägt damit
+   `[hidden] { display: none }` aus dem Browser-Standard — das Attribut
+   bleibt wirkungslos. Fiel lange nicht auf, weil die App den lokalen
+   Bildschirm im Normalfall nach einer Sekunde wieder verlässt. */
+.block[hidden] {
+  display: none;
+}
+
 h1 {
   margin: 0;
   font-size: clamp(26px, 3.4vw, 40px);
