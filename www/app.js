@@ -134,23 +134,74 @@ async function versuchen() {
 
 // --- Serverwahl, über einen langen Druck oben links ---
 
+/* Warum zwei Wege: Ein Tablet liefert pointer-Ereignisse, eine
+   Fernbedienung nicht. Am Fernseher kommt stattdessen die Auswahltaste als
+   keydown auf dem fokussierten Knopf an — ohne den zweiten Weg waere die
+   Serverwahl genau auf den Geraeten unerreichbar, fuer die diese App
+   gemacht ist. */
+
+const HALTEDAUER_MS = 3000;
+
 let druckTimer = null;
 
 function haltenStart() {
+  clearTimeout(druckTimer);
   druckTimer = setTimeout(() => {
     clearInterval(countdownTimer);
     zeige('server');
     document.querySelector('#block-server .knopf')?.focus();
-  }, 3000);
+  }, HALTEDAUER_MS);
 }
 
 function haltenEnde() {
   clearTimeout(druckTimer);
 }
 
-$('geheim').addEventListener('pointerdown', haltenStart);
-$('geheim').addEventListener('pointerup', haltenEnde);
-$('geheim').addEventListener('pointerleave', haltenEnde);
+const geheim = $('geheim');
+
+geheim.addEventListener('pointerdown', haltenStart);
+geheim.addEventListener('pointerup', haltenEnde);
+geheim.addEventListener('pointerleave', haltenEnde);
+
+/* Der unsichtbare Knopf oben links ist nur per Finger erreichbar: Chromium
+   bewegt den Fokus nicht mit Pfeiltasten, eine Fernbedienung kommt also
+   nicht hin. Damit die Serverwahl am Fernseher trotzdem erreichbar ist,
+   haengt dieselbe Geste zusaetzlich an "Erneut versuchen" — der Knopf, der
+   auf dem Fehlerbildschirm ohnehin den Fokus hat.
+
+   Kurz druecken heisst weiterhin: nochmal versuchen. Lang druecken oeffnet
+   die Serverwahl. Das preventDefault ist noetig, weil ein <button> bei
+   Enter sonst sofort click ausloest und wir nie bis zur Sekunde drei
+   kaemen. */
+const AUSWAHLTASTEN = new Set(['Enter', ' ', 'Spacebar']);
+
+let langGehalten = false;
+
+function tasteRunter(e) {
+  if (!AUSWAHLTASTEN.has(e.key)) return;
+  e.preventDefault();
+  if (e.repeat) return;
+
+  langGehalten = false;
+  clearTimeout(druckTimer);
+  druckTimer = setTimeout(() => {
+    langGehalten = true;
+    clearInterval(countdownTimer);
+    zeige('server');
+    document.querySelector('#block-server .knopf')?.focus();
+  }, HALTEDAUER_MS);
+}
+
+function tasteHoch(e) {
+  if (!AUSWAHLTASTEN.has(e.key)) return;
+  e.preventDefault();
+  clearTimeout(druckTimer);
+  if (!langGehalten) versuchen();
+  langGehalten = false;
+}
+
+$('erneut').addEventListener('keydown', tasteRunter);
+$('erneut').addEventListener('keyup', tasteHoch);
 
 for (const knopf of document.querySelectorAll('#block-server [data-host]')) {
   knopf.addEventListener('click', () => {
