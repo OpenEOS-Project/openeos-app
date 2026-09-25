@@ -23,3 +23,7 @@ DerivedData/
 
 # Betriebsartefakte der Werkzeugkette
 .omc/
+
+# Signierschluessel — niemals ins Repository
+android/keystore.properties
+*.jks
