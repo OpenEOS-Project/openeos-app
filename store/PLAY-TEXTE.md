@@ -265,11 +265,10 @@ liegen als Quellen unter `store/roh/`. Logo und Schrift sind **nicht**
 erzeugt, sondern aus den echten Markenassets gesetzt — erzeugte Schrift und
 erzeugte Logos werden unweigerlich falsch.
 
-Auf `marketing-kueche-1920x1080.jpg` ist in den Bildschirm der echte
-Screenshot perspektivisch eingesetzt. Auf der Feature-Grafik zeigt der
-Bildschirm dagegen erzeugte Bestellnummern — das ist zulässig, weil es eine
-Marketing-Grafik ist und keine Bildschirmaufnahme. Wer strenger sein will,
-tauscht auch dort den echten Screenshot ein.
+Auf der Feature-Grafik und auf `marketing-kueche-1920x1080.jpg` ist in den
+Bildschirm jeweils der echte Screenshot perspektivisch eingerechnet. Damit
+zeigt **kein** Store-Asset eine erfundene Oberfläche — auch dort nicht, wo
+Play es erlauben würde.
 
 > **Screenshots müssen die echte App zeigen.** Erzeugte oder nachgebaute
 > Oberflächen fallen unter „irreführende Darstellung" und sind ein
