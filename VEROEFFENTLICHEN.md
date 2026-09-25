@@ -119,12 +119,18 @@ nötig, nicht optional, und dient nicht der Werbung.
 
 ## 4. Grafiken, die Play verlangt
 
-| Was | Größe | Stand |
+Alles Folgende liegt fertig unter `store/`:
+
+| Was | Größe | Datei |
 |---|---|---|
-| App-Symbol | 512×512 PNG | **fehlt** — aus `www/logo.png` erzeugbar |
-| Grafik für die Vorschau | 1024×500 | **fehlt** |
-| Screenshots Telefon | mind. 2, 16:9 oder 9:16 | **fehlt** |
-| Screenshots Fernseher | mind. 1, 1920×1080 | vorhanden (aus dem Emulator) |
+| App-Symbol | 512×512 | `play-icon-512.png` |
+| Grafik für die Vorschau | 1024×500 | `play-feature-1024x500.png` |
+| Screenshots Fernseher | 1920×1080 | `screenshot-tv-*.png` |
+
+**Screenshots vom Telefon fehlen noch.** Play verlangt mindestens zwei,
+sobald die App auch für Telefone angeboten wird. Sie entstehen am
+einfachsten auf einem echten Gerät: App öffnen, Kopplungsbildschirm und
+laufende Anzeige aufnehmen.
 
 Für die TV-Version zusätzlich ein **Banner 320×180** — das liegt bereits
 im Projekt (`res/drawable-xhdpi/tv_banner.png`).
