@@ -14,17 +14,37 @@ mehrere Tage — das ist der längste Posten, also am besten zuerst.
 Für ein Firmenkonto (statt Privatperson) verlangt Google zusätzlich
 einen Nachweis über die D-U-N-S-Nummer. Als Einzelperson entfällt das.
 
-### Signierschlüssel erzeugen
+### Signierschlüssel — **ist bereits erzeugt**
+
+| | |
+|---|---|
+| Datei | `~/.openeos-keys/openeos-release.p12` (nicht im Repo, `600`) |
+| Format | PKCS12, RSA 4096, SHA384withRSA |
+| Alias | `openeos` |
+| Inhaber | `CN=Lukas Lukic-Spitznagel, OU=OpenEOS, O=OpenEOS, L=St. Georgen im Schwarzwald, ST=Baden-Wuerttemberg, C=DE` |
+| Gültig bis | 10. Februar 2054 |
+| SHA-256 | `16:28:9E:56:43:C1:EA:9C:BA:69:99:97:ED:A1:0F:AB:99:A0:81:B7:23:CF:51:8C:4E:95:F2:FF:3A:F3:50:B8` |
+| SHA-1 | `56:B0:BC:88:30:F6:65:A9:BA:16:9D:8B:DE:C5:85:41:42:F7:A3:19` |
+
+Das Passwort steht in `android/keystore.properties` (ebenfalls nicht im
+Repo). Auslesen mit:
+
+```bash
+grep storePassword android/keystore.properties
+```
+
+Der Schlüssel liegt bewusst **außerhalb** des Projektordners: so nimmt ihn
+weder ein ZIP des Repos noch ein versehentliches `git add -f` mit.
+
+Neu erzeugen müsste man ihn so — nur nötig, wenn er verloren geht, und dann
+ist es für eine bereits veröffentlichte App zu spät:
 
 ```bash
 keytool -genkeypair -v \
-  -keystore openeos-release.jks \
+  -keystore openeos-release.p12 -storetype PKCS12 \
   -keyalg RSA -keysize 4096 -validity 10000 \
   -alias openeos
 ```
-
-Dann `android/keystore.properties` anlegen (Vorlage:
-`keystore.properties.beispiel`) und die Angaben eintragen.
 
 :::danger
 **Den Schlüssel sichern, an zwei getrennten Orten.** Geht er verloren,
