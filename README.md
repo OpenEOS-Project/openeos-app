@@ -6,6 +6,23 @@ QR-Code und danach die Küchen-, Theken- oder Kundenanzeige.
 
 Kassen laufen weiterhin im Browser — dafür braucht es keine App.
 
+## Eine App für Anzeigen, später eine zweite für Kassen
+
+Entschieden am 2026-09-25: Diese App bleibt `de.openeos.display` und
+bedient nur Bildschirme. Die Kasse bekommt später ein eigenes Paket
+(`de.openeos.pos`).
+
+Der Grund liegt nicht in der Hülle — die wäre identisch, nur der
+Parameter `?type=` unterscheidet sich. Er liegt in dem, was eine Kasse
+zusätzlich braucht und ein Fernseher nie: den SumUp-Kartenleser über
+App-zu-App-Aufrufe, Bondrucker über Bluetooth, und Offline-Betrieb.
+Diese Teile in der Anzeigen-App mitzuführen hieße, einem Fernseher
+Zahlungsberechtigungen mitzugeben.
+
+Der Preis der Entscheidung: zwei Store-Einträge, zwei Prüfungen, zwei
+Signierschlüssel. Und der Paketname hier ist damit endgültig — er lässt
+sich nach der ersten Veröffentlichung nicht mehr ändern.
+
 ## Warum eine Hülle und keine eigene Oberfläche
 
 Die App startet mit einem eigenen Bildschirm, hält das Display wach und
