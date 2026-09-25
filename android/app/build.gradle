@@ -16,10 +16,34 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    /* Signierung aus einer Datei, die nicht im Repository liegt.
+       Ohne Signatur nimmt Google Play nichts an — und der Schluessel darf
+       nie mitversioniert werden: Wer ihn hat, kann Aktualisierungen der
+       App veroeffentlichen. Geht er verloren, laesst sich die App im
+       Play Store nie wieder aktualisieren. */
+    signingConfigs {
+        release {
+            def schluesselDatei = rootProject.file('keystore.properties')
+            if (schluesselDatei.exists()) {
+                def props = new Properties()
+                props.load(new FileInputStream(schluesselDatei))
+                storeFile file(props['storeFile'])
+                storePassword props['storePassword']
+                keyAlias props['keyAlias']
+                keyPassword props['keyPassword']
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            /* Nur signieren, wenn die Datei da ist — sonst scheitert schon
+               ein gewoehnlicher Build auf einem Rechner ohne Schluessel. */
+            if (rootProject.file('keystore.properties').exists()) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#FFFFFF</color>
+    <!-- Das Grün der Marke. Ein weisser Hintergrund liess das helle Logo
+         auf dem Startbildschirm verschwinden. -->
+    <color name="ic_launcher_background">#14180f</color>
 </resources>
