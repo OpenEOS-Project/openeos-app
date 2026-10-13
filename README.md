@@ -102,3 +102,11 @@ Die eigenen Funktionen oben sind das Gegenargument — Wachhalten,
 Vollbild, Neustart, Offline-Bildschirm. Sicher ist es trotzdem nicht;
 im Zweifel hilft es, in der Einreichung zu erklären, dass die App für
 fest montierte Bildschirme im Gastronomiebetrieb gedacht ist.
+
+## Lizenz
+
+Copyright (C) 2026 LUXCODE by Lukas Lukic-Spitznagel and contributors.
+
+Lizenziert unter der GNU Affero General Public License v3.0 oder (nach
+Ihrer Wahl) einer späteren Version (`AGPL-3.0-or-later`), siehe
+[LICENSE](LICENSE) und [NOTICE](NOTICE).
