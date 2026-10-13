@@ -2,6 +2,7 @@
   "name": "openeos-app",
   "version": "0.1.0",
   "private": true,
+  "license": "AGPL-3.0-or-later",
   "description": "OpenEOS Anzeige — Kopplung per Code für Fernseher, Fire TV und Tablets",
   "scripts": {
     "sync": "cap sync",
